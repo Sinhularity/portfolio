@@ -10,5 +10,6 @@ export default defineConfig({
     }),
   ],
   vite: { plugins: [tailwindcss()] },
-  site: "https://sinhularity.portfolio",
+  site: "https://Sinhularity.github.io",
+  base: "portfolio",
 });
