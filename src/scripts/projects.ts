@@ -7,7 +7,7 @@ export interface Project {
   tags: string[];
   imagesDimensions: {width: number, height: number}[];
 }
-const projectImageBasePath = "../projects/";
+const projectImageBasePath = "../portfolio/projects/";
 
 export const projects: Project[] = [
   {
