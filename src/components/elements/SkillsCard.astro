@@ -1,0 +1,28 @@
+---
+import "../../styles/skillCard.css";
+
+interface Props {
+  title: string;
+  description: string;
+  pdfUrl: string;
+  thumbnail?: string;
+}
+
+const { title, description, pdfUrl, thumbnail } = Astro.props;
+---
+
+<div class="skill-card">
+  <div class="pdf-preview" data-pdf={pdfUrl}>
+    <div class="outer-frame">
+      <div class="inner-box">
+        {thumbnail && <img src={thumbnail} alt={title} class="preview-img" />}
+        <div class="icon-circle">🔍</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="skill-info">
+    <h2>{title}</h2>
+    <p>{description}</p>
+  </div>
+</div>

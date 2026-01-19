@@ -1,0 +1,127 @@
+---
+import "../../styles/swiper.css";
+import GitHubIcon from "../../../public/GitHubIcon.astro";
+
+interface Props {
+  project: any;
+}
+const { project } = Astro.props;
+---
+
+<div
+  class="flex flex-col md:flex-row bg-[#121212] text-white rounded-xl overflow-hidden border border-zinc-800 w-full max-w-4xl hover:border-zinc-600 transition-all items-stretch min-h-100"
+>
+  <div
+    class="w-full md:w-1/2 relative bg-zinc-900 flex items-center justify-center"
+  >
+    <div class="swiper mySwiper w-full h-full">
+      <div class="swiper-wrapper" id="my-slider">
+        {
+          project.images.map((img: string) => (
+            <a
+              class="swiper-slide flex items-center justify-center"
+              href={img}
+              data-pswp-width={
+                project.imagesDimensions[project.images.indexOf(img)].width
+              }
+              data-pswp-height={
+                project.imagesDimensions[project.images.indexOf(img)].height
+              }
+              target="_blank"
+            >
+              <img
+                src={img}
+                alt={project.title}
+                class="max-w-full max-h-full object-contain w-auto h-auto shadow-2xl"
+              />
+            </a>
+          ))
+        }
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+
+  <div class="p-8 md:w-1/2 flex flex-col justify-between">
+    <div>
+      <div
+        class="flex justify-between items-start pt-4 pb-2 border-b border-zinc-800"
+      >
+        <h2 class="text-2xl font-bold">{project.title}</h2>
+        <a
+          href={project.githubUrl}
+          target="_blank"
+          class="text-zinc-400 hover:text-white transition-colors"
+        >
+          <GitHubIcon />
+        </a>
+      </div>
+      <p class="text-description-sec text-sm font-medium mt-2">
+        {project.subtitle}
+      </p>
+      <p class="mt-4 text-zinc-400 text-md leading-relaxed">
+        {project.title === "AcopiaTech" ? (
+          <>
+            {project.description}
+            <a href="https://acopiatech.info" target="_blank" class="text-zinc-400 hover:text-white transition-colors underline">
+              Visit acopiatech.info, credits to Mundus for the design!
+            </a>
+          </>
+        ) : (
+          project.description
+        )}
+      </p>
+    </div>
+
+    <div class="flex flex-wrap gap-2 mt-6">
+      {
+        project.tags.map((tag: string) => (
+          <span class="px-3 py-1 bg-zinc-800/50 text-[10px] uppercase tracking-wider text-zinc-300 rounded-md border border-zinc-700/50">
+            {tag}
+          </span>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<script>
+  import Swiper from "swiper";
+  import { Pagination, Autoplay } from "swiper/modules";
+
+  import "swiper/css";
+  import "swiper/css/pagination";
+  import PhotoSwipeLightbox from "photoswipe/lightbox";
+  import "photoswipe/style.css";
+
+  new Swiper(".mySwiper", {
+    modules: [Pagination, Autoplay],
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+  });
+
+  const lightbox = new PhotoSwipeLightbox({
+    gallery: "#my-slider",
+    children: "a",
+    pswpModule: () => import("photoswipe"),
+  });
+  lightbox.init();
+</script>
+
+<style>
+  :global(.swiper-pagination-bullet) {
+    background: white !important;
+    opacity: 0.5;
+  }
+  :global(.swiper-pagination-bullet-active) {
+    background: var(--color-red-500) !important;
+    opacity: 1;
+  }
+</style>

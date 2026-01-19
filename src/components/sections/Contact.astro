@@ -1,0 +1,135 @@
+---
+import GitHub from "../../../public/GitHub.astro";
+import LinkedIn from "../../../public/LinkedIn.astro";
+---
+
+<section id="contact" class="max-w-xl mx-auto px-6 py-10">
+  <div class="border-t-2 border-b-accent-200 pt-8">
+    <h2 class="text-4xl font-bold text-red-500 mb-2 text-center pt-4">
+      Contact me
+    </h2>
+    <div class="flex justify-between items-end">
+      <a
+        href={`https://www.linkedin.com/in/keffwontwakeup`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <LinkedIn />
+      </a>
+
+      <div class="center mt-6">
+        <a
+          href="https://www.canva.com/design/DAGqkHU6YHw/ncAB0afqpNlcy5NGr14FyA/view?utm_content=DAGqkHU6YHw&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h26ff86c2e6"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <button>
+            <div class="top">Reach me out!</div>
+            <div class="bottom"></div>
+          </button>
+        </a>
+      </div>
+
+      <a
+        href={`https://github.com/Sinhularity`}
+        title={`Visit profile Sinhularity on github`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <GitHub />
+      </a>
+    </div>
+  </div>
+  <style>
+    .center {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    button {
+      width: 140px;
+      height: 50px;
+      position: relative;
+      background: none;
+      outline: none;
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+    .top {
+      width: 100%;
+      height: 100%;
+      background: var(--color-red-500);
+      font-family: poppins;
+      font-size: 18px;
+      color: rgb(255, 255, 255);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 7mm;
+      outline: 2px solid rgb(36, 38, 34);
+      transition: 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .bottom {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: var(--color-red-400);
+      top: 10px;
+      left: 0;
+      border-radius: 7mm;
+      outline: 2px solid rgb(36, 38, 34);
+      z-index: -1;
+    }
+    .bottom::before {
+      position: absolute;
+      content: "";
+      width: 2px;
+      height: 9px;
+      background: rgb(36, 38, 34);
+      bottom: 0;
+      left: 15%;
+    }
+    .bottom::after {
+      position: absolute;
+      content: "";
+      width: 2px;
+      height: 9px;
+      background: rgb(36, 38, 34);
+      bottom: 0;
+      left: 85%;
+    }
+    button:active .top {
+      transform: translateY(10px);
+    }
+    button::before {
+      position: absolute;
+      content: "";
+      width: calc(100% + 2px);
+      height: 100%;
+      background: rgb(140, 140, 140);
+      top: 14px;
+      left: -1px;
+      border-radius: 7mm;
+      outline: 2px solid rgb(36, 38, 34);
+      z-index: -1;
+    }
+    .top::before {
+      position: absolute;
+      content: "";
+      width: 15px;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.1);
+      transform: skewX(30deg);
+      left: -20px;
+      transition: 0.25s;
+    }
+    button:active .top::before {
+      left: calc(100% + 20px);
+    }
+  </style>
+</section>

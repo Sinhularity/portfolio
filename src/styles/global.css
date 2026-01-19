@@ -1,0 +1,51 @@
+@layer base, starlight, theme, components, utilities;
+
+@import "@astrojs/starlight-tailwind";
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@import "tailwindcss";
+
+@theme {
+  --color-accent-200: #f4b5be;
+  --color-accent-600: #a2003f;
+  --color-accent-900: #5d0f25;
+  --color-accent-950: #40111c;
+
+  --color-gray-100: #f7f6f7;
+  --color-gray-200: #f0edee;
+  --color-gray-300: #c4c1c3;
+  --color-gray-400: #90898d;
+  --color-gray-500: #5d565a;
+  --color-gray-700: #3c363a;
+  --color-gray-800: #2b2528;
+  --color-gray-900: #1a1719;
+
+  --color-primary: #b81b37;
+  --color-card-bg: #1a1a1a;
+  --color-description: #6b7280;
+  --color-description-sec: #585858;
+}
+
+
+:root {
+    color-scheme: light dark;
+    display: flex;
+    align-items: center;
+    background-color: black;
+    
+  
+  --sl-color-accent-low: var(--color-accent-950);
+  --sl-color-accent: var(--color-primary);
+  --sl-color-accent-high: var(--color-accent-200);
+  
+  
+  --sl-color-bg: var(--color-gray-900);
+  --sl-color-white: var(--color-gray-100);
+  --sl-color-gray-1: var(--color-gray-100);
+  --sl-color-gray-2: var(--color-gray-200);
+  --sl-color-gray-3: var(--color-gray-300);
+  --sl-color-gray-4: var(--color-gray-400);
+  --sl-color-gray-5: var(--color-gray-500);
+  --sl-color-gray-6: var(--color-gray-700);
+}

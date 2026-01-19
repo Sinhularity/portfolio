@@ -1,0 +1,59 @@
+---
+import profile from "../../../public/profile.jpg";
+const tecnhologies = [
+  "Express.js",
+  "Odoo",
+  "Flutter",
+  "Docker",
+  "Git & GitHub",
+  "MySQL",
+  "Firebase",
+];
+---
+
+<section id="about" class="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-10">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+    <div class="md:pl-20">
+      <div class="border-b-2 border-b-white pb-4">
+        <h2
+          class="text-xl sm:text-4xl font-bold text-red-500 mb-2 text-center md:text-right"
+        >
+          About me
+        </h2>
+      </div>
+
+      <p class="text-sm sm:text-base text-gray-500 mb-6 pt-8 md:text-right">
+        Junior Software Developer, focused on backend development but open to
+        work on fullstack projects.
+      </p>
+
+      <p class="text-sm sm:text-base leading-relaxed md:text-right">
+        My name is Kevin Sebastián Frias García, right now I'm studying Software
+        Engineering at Universidad Veracruzana (UV). <br /><br />
+        I have experience working with technologies such as:
+        <div class="mt-4 flex flex-wrap gap-2 justify-center md:justify-end">
+          {
+            tecnhologies.map((tech) => (
+              <span class="px-3 py-1 bg-red-500/10 text-red-500 rounded-full text-xs sm:text-sm font-medium border border-red-500/20">
+                {tech}
+              </span>
+            ))
+          }
+        </div>
+        <br />
+        <p class="text-sm sm:text-base leading-relaxed md:text-right">
+        I'm always looking for new topics to learn and improve my skills as a developer.
+        I love the process of creating applications from scratch and seeing them come
+        to life.
+      </p>
+    </div>
+
+    <div class="flex justify-center mt-10 md:mt-0">
+      <img
+        src={profile.src}
+        alt="Profile of Kevin S. Frias García"
+        class="w-56 h-72 sm:w-72 sm:h-96 object-cover rounded-lg shadow-lg"
+      />
+    </div>
+  </div>
+</section>

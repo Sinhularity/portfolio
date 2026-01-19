@@ -1,0 +1,101 @@
+---
+import "../../styles/header.css";
+import Menu from "../../../public/menuIcon.astro";
+
+const navItems = [
+  { href: "#about", label: "About me" },
+  { href: "#contact", label: "Contact" },
+  { href: "#projects", label: "Projects" },
+  { href: "#skills", label: "Skills" },
+];
+---
+
+<header class="header pill-container" id="main-header">
+  <div class="header-content">
+    <div class="logo">
+      Kevin S. <span class="highlight">Frias García</span>
+    </div>
+
+    <nav class="nav-menu full-nav">
+      {
+        navItems.map((item) => (
+          <a href={item.href} class="nav-link">
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="menu-trigger">
+      <button id="menu-button" aria-label="Menu Button" class="icon-btn">
+        <Menu />
+      </button>
+    </div>
+
+    <div id="dropmenu" class="dropmenu">
+      <nav class="nav-menu drop-nav">
+        {
+          navItems.map((item) => (
+            <a href={item.href} class="nav-link">
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+  </div>
+</header>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const header = document.getElementById("main-header");
+    const menuButton = document.getElementById("menu-button");
+    const dropMenu = document.getElementById("dropmenu");
+    const navLinks = document.querySelectorAll(".nav-link");
+    const sections = document.querySelectorAll("section[id]");
+
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        header?.classList.add("scrolled");
+      } else {
+        header?.classList.remove("scrolled");
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    const toggleMenu = (e: MouseEvent) => {
+      e.stopPropagation();
+      dropMenu?.classList.toggle("is-active");
+    };
+
+    const closeMenu = () => dropMenu?.classList.remove("is-active");
+
+    menuButton?.addEventListener("click", toggleMenu);
+
+    navLinks.forEach((link) => link.addEventListener("click", closeMenu));
+    document.addEventListener("click", (e) => {
+      if (!dropMenu?.contains(e.target as Node) && !menuButton?.contains(e.target as Node)) {
+        closeMenu();
+      }
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("id");
+            navLinks.forEach((link) => {
+              link.classList.remove("active");
+              if (link.getAttribute("href") === `#${id}`) {
+                link.classList.add("active");
+              }
+            });
+          }
+        });
+      },
+      { rootMargin: "-30% 0px -70% 0px" },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  });
+</script>
